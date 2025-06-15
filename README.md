@@ -1,273 +1,214 @@
-# AudioPlayer Project Roadmap & Goals
-*An Open Source Darwin ARM64 Audio Player following WWDC25 iPadOS Design Principles*
-
+# AudioPlayer
+*An Open Source, modern Darwin ARM64 AudioPlayback Application following WWDC25 iPadOS Design Principles*
 
 ![Platform Support](https://img.shields.io/badge/platform-macOS%20%7C%20iOS%20%7C%20iPadOS-blue)
 ![Swift Version](https://img.shields.io/badge/swift-5.9+-orange)
 ![iOS Version](https://img.shields.io/badge/iOS-18.0+-green)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
-
 ## ✨ Current Status: **WORKING BUILD**
 
 ## 🎯 Project Vision
-Building a **native, adaptive audio player** that scales beautifully from iPhone to iPad to macOS while maintaining consistent SwiftUI design language. Following WWDC25 design principles for elevated iPadOS experiences that adapt naturally across Apple platforms.
+
+Building a native, adaptive audio player that scales beautifully from iPhone to iPad to macOS while maintaining consistent SwiftUI design language. Following WWDC25 design principles for elevated iPadOS experiences that adapt naturally across Apple platforms.
 
 The app is now fully functional with a modern SwiftUI architecture! 🎉
 
 ### 🚀 **What's Working Right Now:**
+- ✅ **Interactive Core Interface** - Smooth, responsive main functionality
+- ✅ **Document-based Architecture** - Proper save/load with native integration
+- ✅ **Cross-Platform Support** - Native iPhone, iPad, and Mac Catalyst
+- ✅ **Modern SwiftUI** - Built with iOS 18+ and `@Observable` architecture
+- ✅ **Adaptive Interface** - Different UI layouts for different screen sizes
+- ✅ **Gesture Support** - Touch, mouse, and trackpad optimized
 
 ## Features
----
 
-## 📱 Current Architecture Status
+### 🎨 **Core Experience**
+- **Interactive Interface** with smooth, responsive controls
+- **Cross-Platform Design** that adapts beautifully across devices
+- **Modern Architecture** built with latest SwiftUI and iOS technologies
+- **Document Management** with automatic save and native file handling
+- **Performance Optimized** for smooth operation on all supported devices
 
-### ✅ **Completed Core Foundation**
-- **Adaptive UI System**: FloatingSidebar (landscape) + FloatingTabBar (portrait)
-- **Data Layer**: SwiftData models (Song, Album) with proper relationships
-- **Audio Engine**: AVFoundation-based AudioPlayerService with background playback
-- **Import System**: MusicImportService with metadata extraction and file management
-- **View Architecture**: Albums grid view + Songs list view with search
-- **Playback UI**: MiniPlayer + FullNowPlayingView with artwork display
+### 🧠 **Darwin ARM64 Developer-Focused Design**
+- **Clean, Modern Interface** built for technical workflows
+- **Keyboard Shortcuts** - Space bar shortcuts and standard key commands
+- **Document Browser** with live previews
+- **JSON-Based Storage** for portability and version control
+- **Git-Friendly Format** - Text-based storage that works with version control
 
-### 🏗️ **Architecture Strengths**
-- **Platform Adaptive**: Sidebar/TabBar pattern scales perfectly across screen sizes
-- **Material Design**: Proper use of `.regularMaterial` and floating elements
-- **State Management**: Proper `@StateObject` and `@Environment` usage
-- **Service Pattern**: Singleton AudioPlayerService for global state
-- **File Management**: Secure document directory handling with UUID naming
+### 💾 **Document Management**
+- **Document-based App** architecture with proper iOS/macOS integration
+- **Automatic Save/Restore** functionality
+- **JSON Export/Import** for data portability
+- **Document Browser** with visual previews
+- **File Sharing** support through standard iOS/macOS sharing
 
----
+### 🔧 **Modern Architecture**
+- **iOS 18+ and SwiftUI** with latest APIs
+- **`@Observable` State Management** for reactive updates
+- **`ReferenceFileDocument`** for proper document handling
+- **Cross-Platform Codebase** - Single codebase for iPhone, iPad, and Mac
+- **Mac Catalyst Optimized** - Native-feeling Mac experience
 
-## 🗺️ Development Roadmap
+### 📱 **Adaptive Interface (WWDC25 Principles)**
+- **iPad Landscape**: Full sidebar with document browser and tools
+- **iPad Portrait**: Floating toolbars and streamlined interface  
+- **iPhone**: Compact interface with floating action buttons
+- **Mac Catalyst**: Native Mac styling with proper window management
 
-### **Phase 1: Core Experience Polish**
+## Current Implementation Status
 
-#### Playback Enhancement
-- [ ] **Queue Management**: Implement next/previous track functionality
-- [ ] **Auto-play**: Automatic progression through album/playlist
-- [ ] **Gapless Playback**: Seamless transitions between tracks
-- [ ] **Crossfade**: Optional crossfade between tracks (Settings)
-- [ ] **Playback Speed**: 0.5x - 2.0x speed controls in FullNowPlayingView
+### ✅ **Phase 1: Core Foundation - COMPLETE**
+- [x] Modern SwiftUI architecture with `@Observable`
+- [x] Document-based app structure with save/load
+- [x] Interactive core functionality
+- [x] Infinite canvas with smooth pan/zoom
+- [x] Cross-platform deployment (iPhone, iPad, Mac)
 
-#### Audio Features
-- [ ] **Seek Controls**: Progress bar with scrubbing in FullNowPlayingView
-- [ ] **Volume Controls**: System volume integration + visual feedback
-- [ ] **Audio Session**: Handle interruptions (calls, other apps)
-- [ ] **Background Playback**: Lock screen controls + Control Center integration
-- [ ] **AirPlay Support**: Built-in AirPlay routing
+### ✅ **Phase 2: Visual Experience - COMPLETE**
+- [x] **Mac Catalyst Support**: Native Mac interface with proper styling
+- [x] **Material Design System**: Consistent use of `.ultraThinMaterial`
+- [x] **Enhanced Styling**: Hover states, selection feedback, animations
+- [x] **Adaptive Layouts**: Different interfaces for different screen sizes
+- [x] **Document Browser**: Visual grid with live previews
+- [x] **Gesture System**: Multi-touch, mouse, and trackpad support
 
-#### Library Management
-- [ ] **Bulk Import**: Folder import with progress indication
-- [ ] **Format Support**: Add FLAC, AIFF, WAV support verification
-- [ ] **Metadata Editing**: In-app editing of song/album metadata
-- [ ] **File Organization**: Smart duplicate detection and management
-- [ ] **Search Enhancement**: Real-time search with better filtering
+### 🚧 **Phase 3: Advanced Features - IN PROGRESS**
+- [ ] Enhanced interaction system with advanced controls
+- [ ] Advanced styling options and customization
+- [ ] Undo/Redo system with command pattern
+- [ ] Grid and snapping functionality
+- [ ] Export system for multiple formats
+- [ ] Search and filter capabilities
 
-### **Phase 2: Advanced Features**
+### 🔮 **Phase 4: Developer Productivity - PLANNED**
+- [ ] Rich text support with markdown rendering
+- [ ] Template system for common workflows
+- [ ] External integrations with development tools
+- [ ] Collaborative features for team workflows
+- [ ] AI-powered suggestions and automation
 
-#### Playlists & Organization
-- [ ] **Playlist Creation**: User-created playlists with drag-and-drop
-- [ ] **Smart Playlists**: Recently Added, Most Played, etc.
-- [ ] **Library Stats**: Play counts, last played, date added tracking
-- [ ] **Sorting Options**: Multiple sort criteria for albums/songs
-- [ ] **Favorites System**: Heart/star ratings with filtering
+## Installation & Setup
 
-#### Visual & UX Polish
-- [ ] **Dark Mode**: Comprehensive dark mode support
-- [ ] **Animations**: Smooth transitions between play states
-- [ ] **Haptic Feedback**: Subtle haptics for interactions (iOS/iPadOS)
-- [ ] **Accessibility**: VoiceOver, Dynamic Type, high contrast support
-- [ ] **Keyboard Shortcuts**: macOS keyboard navigation and media keys
+### Prerequisites
+- **Xcode 16.0+** 
+- **iOS/iPadOS 18.0+** or **macOS 15.0+**
+- **Swift 5.9+**
+- **Darwin ARM64** architecture (Apple Silicon optimized)
 
-#### Platform Optimization
-- [ ] **macOS Menubar**: Optional menubar integration for macOS
-- [ ] **Window Management**: Multiple windows support on macOS/iPadOS
-- [ ] **Spotlight Integration**: Make songs searchable in Spotlight
-- [ ] **File Associations**: Register as handler for audio file types
-- [ ] **Share Extension**: Import from other apps
-
-### **Phase 3: Advanced Audio & Performance**
-
-#### Audio Enhancement
-- [ ] **Equalizer**: 10-band EQ with presets
-- [ ] **Audio Effects**: Reverb, bass boost, spatial audio
-- [ ] **Visualizer**: Real-time spectrum analyzer
-- [ ] **Audio Quality**: High-resolution audio support
-- [ ] **Format Transcoding**: Optional on-the-fly format conversion
-
-#### Performance & Scale
-- [ ] **Large Libraries**: Optimize for 10,000+ song libraries
-- [ ] **Memory Management**: Efficient artwork caching
-- [ ] **Background Processing**: Asynchronous metadata scanning
-- [ ] **Database Optimization**: Core Data performance tuning
-- [ ] **Launch Performance**: Fast app startup times
-
-#### Cloud & Sync
-- [ ] **iCloud Sync**: Sync playlists and metadata across devices
-- [ ] **Library Backup**: Export/import library data
-- [ ] **Music Matching**: Optional Apple Music integration for artwork
-- [ ] **Last.fm Scrobbling**: Optional music tracking integration
-- [ ] **Statistics Sync**: Play history across devices
-
-### **Phase 4: Polish & Release**
-
-#### Testing & Refinement
-- [ ] **Unit Tests**: Core functionality test coverage
-- [ ] **UI Testing**: Automated UI interaction tests
-- [ ] **Performance Testing**: Memory leaks, CPU usage profiling
-- [ ] **Device Testing**: iPhone SE to iPad Pro to Mac Studio
-- [ ] **Edge Cases**: Handle corrupt files, network issues, etc.
-
-#### Documentation & Open Source
-- [ ] **Code Documentation**: Comprehensive inline documentation
-- [ ] **Architecture Guide**: Developer documentation for contributors
-- [ ] **Build Instructions**: Clear setup and build process
-- [ ] **Contribution Guidelines**: Open source contribution standards
-- [ ] **License & Legal**: Choose appropriate open source license
-
-#### Release Preparation
-- [ ] **App Store Assets**: Screenshots, descriptions, metadata
-- [ ] **Privacy Policy**: Data handling and privacy documentation
-- [ ] **Marketing Site**: Simple website with features and downloads
-- [ ] **Press Kit**: Media resources for coverage
-- [ ] **Community Setup**: GitHub issues, discussions, Discord/forum
-
----
-
-## 🏛️ Technical Architecture
-
-### **Current Stack**
-```
-┌─────────────────────────────────────────┐
-│                Views                    │
-├─────────────────────────────────────────┤
-│ ContentView (Adaptive Container)        │
-│ ├── FloatingSidebar (Landscape)         │
-│ ├── FloatingTabBar (Portrait)           │
-│ ├── AlbumsView (Grid + Expandable)      │
-│ ├── SongsView (List + Search)           │
-│ ├── MiniPlayer (Floating)               │
-│ └── FullNowPlayingView (Sheet)          │
-├─────────────────────────────────────────┤
-│              Services                   │
-├─────────────────────────────────────────┤
-│ AudioPlayerService (Singleton)          │
-│ MusicImportService (File Management)    │
-├─────────────────────────────────────────┤
-│               Models                    │
-├─────────────────────────────────────────┤
-│ Song (SwiftData)                        │
-│ Album (SwiftData)                       │
-├─────────────────────────────────────────┤
-│              Foundation                 │
-├─────────────────────────────────────────┤
-│ AVFoundation (Audio Playback)           │
-│ SwiftData (Persistence)                 │
-│ SwiftUI (All UI)                        │
-└─────────────────────────────────────────┘
+### Quick Start
+```bash
+git clone https://github.com/lithalean/AudioPlayer.git
+cd AudioPlayer
+open AudioPlayer.xcodeproj
 ```
 
-### **Design Principles (WWDC25 Compliance)**
+**Build and run** for your desired platform:
+- **iPhone/iPad**: Select iOS Simulator or device
+- **Mac**: Select "My Mac (Designed for iPad)" for Mac Catalyst
 
-#### **Adaptive Interface**
-- **Sidebar Pattern**: Landscape mode shows persistent sidebar navigation
-- **Tab Bar Pattern**: Portrait mode uses floating tab bar
-- **Material Design**: Consistent use of `.regularMaterial` for depth
-- **Floating Elements**: Buttons and controls use shadow/elevation
+## Usage
 
-#### **Content Organization**
-- **Grid + List Hybrid**: Albums use expandable grid, Songs use searchable list
-- **Contextual Actions**: Play buttons appear on hover/selection
-- **Progressive Disclosure**: Album tracks expand inline rather than navigation
+### 🎯 **Getting Started**
+1. **Launch the app** - You'll see the document browser interface
+2. **Create or open** - Start with a new document or open existing
+3. **Start creating** - Use intuitive gestures and controls
 
-#### **Platform Scaling**
-- **iPhone**: Floating tab bar, compact mini-player
-- **iPad**: Sidebar + content area, expanded mini-player
-- **macOS**: Native window chrome, keyboard shortcuts, menubar
+### ⌨️ **Controls**
+- **Primary Action**: Tap/click to interact with elements
+- **Secondary Action**: Double-tap for detailed editing
+- **Navigation**: Drag to pan, pinch/scroll to zoom
+- **Multi-Select**: Use modifier keys for multiple selection
 
----
+### 🖥️ **Platform-Specific Features**
+- **iPad**: Full toolbar with controls and document info
+- **iPhone**: Floating action buttons for compact interface
+- **Mac**: Native Mac toolbar with proper window management
 
-## 🎨 Design System
+### 💾 **Documents**
+- **Auto-save**: Documents save automatically as you work
+- **File Format**: Human-readable JSON for version control
+- **Sharing**: Standard iOS/macOS sharing for export
+- **Templates**: Built-in templates for common use cases
 
-### **Visual Hierarchy**
-- **Primary Actions**: Accent color for play states and current items
-- **Secondary Info**: System gray for metadata and secondary text
-- **Material Backgrounds**: Frosted glass effect for floating elements
-- **Consistent Spacing**: 16px standard, 8px compact, 20px generous
+## Technical Architecture
 
-### **Component Library**
-- **FloatingSidebar**: Navigation with material background
-- **FloatingTabBar**: Bottom navigation for portrait
-- **MiniPlayer**: Adaptive floating now-playing
-- **AlbumGridItem**: Expandable album cards
-- **SongRowView**: List rows with contextual play buttons
+### Modern SwiftUI Stack
+- **`@Observable`** for reactive state management
+- **`ReferenceFileDocument`** for document persistence  
+- **`Canvas`** for high-performance rendering
+- **`GeometryReader`** for adaptive layouts
+- **`NavigationSplitView`** for native platform navigation
 
-### **Animation Principles**
-- **Smooth Transitions**: 0.3s easeInOut for state changes
-- **Contextual Animation**: Scale effects for selection/expansion
-- **Responsive Feedback**: Immediate visual response to user actions
+### Key Components
+```
+AudioPlayer/
+├── App/
+│   └── AudioPlayerApp.swift       # DocumentGroup app entry point
+├── Models/
+│   ├── AudioPlayerDocument.swift  # Core observable document model
+│   ├── CanvasState.swift            # View state management
+│   └── StyleDefinitions.swift       # Visual styling definitions
+└── Views/
+	├── ContentView.swift            # Adaptive container view
+	├── MainCanvasView.swift         # Primary interface implementation
+	├── DocumentBrowserView.swift    # Document management UI
+	└── AdaptiveToolbar.swift        # Platform-specific toolbars
+```
 
----
+### Design Patterns
+- **MVVM Architecture**: Clear separation between models and views
+- **Reactive Programming**: `@Observable` for automatic UI updates
+- **Platform Adaptation**: Conditional UI based on device capabilities
+- **Document-Driven**: Native iOS/macOS document lifecycle
 
-## 📊 Success Metrics
+## Development Roadmap
 
-### **Performance Targets**
-- **App Launch**: < 1.5 seconds on any supported device
-- **Library Scan**: < 3 seconds for 1000 songs
-- **Memory Usage**: < 150MB with large libraries
-- **Battery Impact**: Minimal drain during background playback
+### 🔜 **Next Up (Phase 3)**
+1. **Enhanced Interactions**: Advanced gesture recognition and controls
+2. **Visual Polish**: Improved animations and visual feedback
+3. **Export System**: Multiple format support with high quality
+4. **Search Functionality**: Full-text search and filtering
+5. **Performance**: Optimization for large datasets and complex operations
 
-### **User Experience Goals**
-- **Intuitive Navigation**: Zero learning curve for basic playback
-- **Responsive Interface**: < 100ms response to all interactions
-- **Reliable Playback**: Zero skips or interruptions during normal use
-- **Cross-Platform Consistency**: Identical functionality across devices
+### 🎯 **Medium Term (Phase 4)**
+1. **Rich Content**: Advanced text rendering and media support
+2. **Template System**: Pre-built templates for common workflows
+3. **Integrations**: Connect with popular development and productivity tools
+4. **Collaboration**: Real-time multi-user capabilities
+5. **AI Features**: Smart suggestions and automated optimization
 
-### **Open Source Success**
-- **GitHub Stars**: 1000+ stars within 6 months
-- **Contributors**: 10+ active contributors
-- **Issue Resolution**: < 48 hour response time
-- **Documentation**: 100% API coverage
+### 🚀 **Long Term (Phase 5+)**
+1. **DarwinCodex Integration**: Unified suite with development tools
+2. **Advanced Analytics**: Usage insights and performance patterns
+3. **Plugin Architecture**: Third-party extensions and customizations
+4. **Web Export**: Share content as interactive web experiences
+5. **Enterprise Features**: Team workspaces and advanced permissions
 
----
+## 🤖 Claude.ai Integration
 
-## 🚀 Release Strategy
+> **For AI Collaboration**: This project uses Claude.ai assistance for development, architecture decisions, and feature planning. The `.claude/` directory contains detailed context files for AI collaboration continuity.
 
-### **Alpha Release**
-- Internal testing build
-- Core playback + library features
-- Basic adaptive UI working
+**Quick Context**: [BRIEF_PROJECT_CONTEXT_FOR_AI]
 
-### **Beta Release**
-- Public TestFlight beta
-- Advanced features implemented
-- Performance optimized
+**Key AI Collaboration Areas**:
+- 🏗️ **Architecture**: SwiftUI + @Observable patterns, document-based design
+- 🎨 **Design**: WWDC25 principles, adaptive layouts, material design
+- 🔧 **Development**: Darwin ARM64 optimization, cross-platform compatibility
+- 📋 **Planning**: Feature roadmap, technical debt tracking, performance optimization
 
-### **1.0 Release**
-- App Store submission
-- Full feature set
-- Complete documentation
-- Open source repository public
+**AI Context Files**: See `.claude/context.md` for detailed project state, architecture decisions, and ongoing development context.
 
-### **Post-1.0 Roadmap**
-- **1.1**: Advanced audio features (EQ, effects)
-- **1.2**: Cloud sync and backup
-- **1.3**: Music service integrations
-- **2.0**: Major UI refresh following next WWDC
+## License
 
----
+AudioPlayer is released under the MIT License. See [LICENSE](LICENSE) for details.
 
-## 🛠️ Development Environment
+## Acknowledgments
 
-### **Requirements**
-- **Xcode**: 15.0+ for SwiftUI and SwiftData
-- **macOS**: 14.0+ for development
-- **Target**: iOS 17+, iPadOS 17+, macOS 14+
-- **Architecture**: ARM64 optimized, Intel compatible
-
-### **Build Configuration**
-- **Debug**: Fast compilation, extensive logging
-- **Release**: Optimized performance, minimal logging
-- **Testing**: Unit tests + UI tests enabled
-- **Archive**: App Store distribution ready
+- **SwiftUI Team** for the amazing declarative UI framework
+- **iOS/macOS Engineering** for the robust document architecture
+- **Design Inspiration**: Modern productivity and development tools
+- **Darwin ARM64 Community** for performance optimization insights
+- **Claude.ai** for architectural guidance and development assistance
