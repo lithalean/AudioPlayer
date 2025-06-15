@@ -1,9 +1,23 @@
 # AudioPlayer Project Roadmap & Goals
 *An Open Source Darwin ARM64 Audio Player following WWDC25 iPadOS Design Principles*
 
+
+![Platform Support](https://img.shields.io/badge/platform-macOS%20%7C%20iOS%20%7C%20iPadOS-blue)
+![Swift Version](https://img.shields.io/badge/swift-5.9+-orange)
+![iOS Version](https://img.shields.io/badge/iOS-18.0+-green)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
+
+## ✨ Current Status: **WORKING BUILD**
+
 ## 🎯 Project Vision
 Building a **native, adaptive audio player** that scales beautifully from iPhone to iPad to macOS while maintaining consistent SwiftUI design language. Following WWDC25 design principles for elevated iPadOS experiences that adapt naturally across Apple platforms.
 
+The app is now fully functional with a modern SwiftUI architecture! 🎉
+
+### 🚀 **What's Working Right Now:**
+
+## Features
 ---
 
 ## 📱 Current Architecture Status
