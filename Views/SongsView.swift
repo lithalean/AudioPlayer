@@ -1,34 +1,27 @@
-//
-//  SongsView.swift
-//  AudioPlayer
-//
-//  Created by Tyler Allen on 6/14/25.
-//
-
-
-// SongsView.swift - List view of all songs
+// SongsView.swift - List view of all songs with playback
 import SwiftUI
 import SwiftData
 
 struct SongsView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query private var songs: [Song]
+    @State private var songs: [Song] = []
     @State private var searchText = ""
+    @StateObject private var audioPlayer = AudioPlayerService.shared
     
     var filteredSongs: [Song] {
         if searchText.isEmpty {
-            return songs.sorted { $0.title < $1.title }
+            return songs
         } else {
             return songs.filter { song in
                 song.title.localizedCaseInsensitiveContains(searchText) ||
                 song.artist.localizedCaseInsensitiveContains(searchText) ||
                 song.albumName.localizedCaseInsensitiveContains(searchText)
-            }.sorted { $0.title < $1.title }
+            }
         }
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 // Search bar
                 HStack {
@@ -47,10 +40,12 @@ struct SongsView: View {
                 // Songs list
                 List(filteredSongs) { song in
                     SongRowView(song: song)
+                        .environmentObject(audioPlayer)
                 }
                 .listStyle(.inset)
             }
             .navigationTitle("Songs")
+            .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button("Add Song") {
@@ -58,24 +53,53 @@ struct SongsView: View {
                     }
                 }
             }
+            .onAppear {
+                loadSongs()
+            }
+            .onChange(of: modelContext) {
+                loadSongs()
+            }
+        }
+    }
+    
+    private func loadSongs() {
+        do {
+            let descriptor = FetchDescriptor<Song>(
+                sortBy: [SortDescriptor(\Song.title)]
+            )
+            songs = try modelContext.fetch(descriptor)
+        } catch {
+            print("Failed to fetch songs: \(error)")
+            songs = []
         }
     }
 }
 
 struct SongRowView: View {
     let song: Song
+    @EnvironmentObject var audioPlayer: AudioPlayerService
     @State private var isHovered = false
+    
+    var isCurrentSong: Bool {
+        audioPlayer.currentSong?.id == song.id
+    }
     
     var body: some View {
         HStack {
-            // Play button (visible on hover)
+            // Play button
             Button(action: {
-                // TODO: Play song
+                if isCurrentSong && audioPlayer.isPlaying {
+                    audioPlayer.pause()
+                } else if isCurrentSong {
+                    audioPlayer.resume()
+                } else {
+                    audioPlayer.play(song: song)
+                }
             }) {
-                Image(systemName: isHovered ? "play.fill" : "music.note")
+                Image(systemName: playButtonIcon)
                     .font(.system(size: 16))
                     .frame(width: 24, height: 24)
-                    .foregroundColor(isHovered ? .accentColor : .secondary)
+                    .foregroundColor(isCurrentSong ? .accentColor : .secondary)
             }
             .buttonStyle(.plain)
             
@@ -84,6 +108,7 @@ struct SongRowView: View {
                 Text(song.title)
                     .font(.headline)
                     .lineLimit(1)
+                    .foregroundColor(isCurrentSong ? .accentColor : .primary)
                 
                 HStack {
                     Text(song.artist)
@@ -104,10 +129,19 @@ struct SongRowView: View {
                 .monospacedDigit()
         }
         .padding(.vertical, 4)
-        .onHover { hovering in
+        .onTapGesture {
+            // For iOS - tap to show/hide play button
             withAnimation(.easeInOut(duration: 0.1)) {
-                isHovered = hovering
+                isHovered.toggle()
             }
+        }
+    }
+    
+    private var playButtonIcon: String {
+        if isCurrentSong {
+            return audioPlayer.isPlaying ? "pause.fill" : "play.fill"
+        } else {
+            return isHovered ? "play.fill" : "music.note"
         }
     }
 }
