@@ -1,0 +1,272 @@
+# AudioPlayer Integration Context
+# Version: 1.0
+# Last Updated: 2025-08-01
+
+integration_summary:
+  total_integrations: 7
+  ready: 7
+  in_progress: 0
+  planned: 4
+  excluded: 8
+
+# Core Framework Dependencies (All Integrated)
+framework_dependencies:
+  SwiftUI:
+    version: "iOS 17.0+"
+    status: "integrated"
+    purpose: "Complete UI framework for all views"
+    usage:
+      - "NavigationSplitView for iPad/Mac"
+      - "TabView for iPhone"
+      - "LazyVGrid for album grid"
+      - "Materials for glass effects"
+    lines_of_code: 2636
+    
+  SwiftData:
+    version: "iOS 17.0+"
+    status: "integrated"
+    purpose: "Persistent storage for music library"
+    usage:
+      - "Album and Song models"
+      - "@Relationship for associations"
+      - "@Query for reactive UI"
+      - "ModelContainer in app"
+    known_issues:
+      - "Relationship bindings require Array conversion"
+    
+  AVFoundation:
+    version: "iOS 17.0+"
+    status: "integrated"
+    purpose: "Audio playback and metadata extraction"
+    components:
+      AVAudioPlayer:
+        status: "active"
+        purpose: "Current playback engine"
+        limitations: ["No gapless", "No background"]
+      AVAsset:
+        status: "active"
+        purpose: "M4A metadata extraction"
+        capabilities: ["Title", "Artist", "Album", "Artwork", "Duration"]
+      AVPlayer:
+        status: "planned"
+        purpose: "Future gapless playback"
+        timeline: "Phase 3"
+        
+  UniformTypeIdentifiers:
+    version: "iOS 14.0+"
+    status: "integrated"
+    purpose: "M4A file type validation"
+    implementation: |
+      UTType(filenameExtension: "m4a")!
+    
+  Foundation:
+    version: "iOS 17.0+"
+    status: "integrated"
+    purpose: "Core utilities"
+    usage:
+      - "URL for file paths"
+      - "Data for artwork"
+      - "TimeInterval for duration"
+      - "UUID for identifiers"
+      
+  UIKit:
+    version: "iOS 17.0+"
+    status: "integrated"
+    purpose: "Platform integration"
+    usage:
+      - "UIImage for artwork processing"
+      - "UIApplication for system integration"
+      - "UIViewRepresentable bridges (future)"
+      
+  Combine:
+    version: "iOS 13.0+"
+    status: "integrated"
+    purpose: "Reactive programming"
+    usage:
+      - "@Published in AudioPlayerService"
+      - "ObservableObject protocol"
+      - "Cancellables for subscriptions"
+
+# Platform Requirements
+platform_requirements:
+  iOS:
+    minimum_version: "17.0"
+    recommended: "17.4+"
+    target_devices: ["iPhone", "iPad"]
+    capabilities:
+      file_import: true
+      metadata_edit: true
+      background_audio: "planned"
+      file_access: "user-selected"
+    required_capabilities:
+      - "arm64"
+      
+  tvOS:
+    minimum_version: "17.0"
+    recommended: "17.4+"
+    target_devices: ["Apple TV 4K", "Apple TV HD"]
+    capabilities:
+      file_import: false  # Platform limitation
+      focus_engine: true
+      remote_control: true
+      game_controller: "future"
+    limitations:
+      - "No FileImporter API"
+      - "No UIDocumentPickerViewController"
+      
+  macOS:
+    minimum_version: "14.0"
+    deployment: "Mac Catalyst"
+    status: "deprioritized"
+    capabilities:
+      native_menus: "automatic"
+      window_management: "basic"
+      touch_bar: "not implemented"
+
+# Audio Format Support (M4A Exclusive)
+audio_formats:
+  m4a:
+    status: "fully_supported"
+    container: "MPEG-4 Part 14"
+    file_extensions: [".m4a"]
+    codecs:
+      AAC:
+        status: "integrated"
+        purpose: "Lossy compression"
+        bitrates: "All standard rates"
+        detection: "kAudioFormatMPEG4AAC"
+      ALAC:
+        status: "integrated" 
+        purpose: "Lossless compression"
+        detection: "kAudioFormatAppleLossless"
+        special_handling: "isLossless flag set"
+    metadata_support:
+      - "Title (©nam)"
+      - "Artist (©ART)"
+      - "Album (©alb)"
+      - "Track (trkn)"
+      - "Disc (disk)"
+      - "Year (©day)"
+      - "Artwork (covr)"
+      - "Album Artist (aART)"
+  
+  excluded_formats:
+    mp3:
+      reason: "Not Apple native format"
+      user_impact: "Must convert to M4A"
+    flac:
+      reason: "Not Apple native, use ALAC"
+      user_impact: "Must convert to M4A/ALAC"
+    wav:
+      reason: "Uncompressed, too large"
+      user_impact: "Convert to ALAC"
+    ogg:
+      reason: "No native support"
+      user_impact: "Not supported"
+    opus:
+      reason: "Not Apple format"
+      user_impact: "Not supported"
+    wma:
+      reason: "Windows format"
+      user_impact: "Not supported"
+    aiff:
+      reason: "Legacy uncompressed"
+      user_impact: "Convert to ALAC"
+
+# Code Architecture Metrics
+code_metrics:
+  total_files: 11
+  total_lines: 2636
+  by_category:
+    models: 176  # Album, Song, Item
+    views: 1543  # All UI components
+    services: 391  # Audio, Import
+    app: 367     # App setup, routing
+    resources: 159  # Assets, configs
+
+# Entitlements
+entitlements:
+  current:
+    "com.apple.security.files.user-selected.read-write":
+      status: "active"
+      purpose: "Import M4A files"
+      
+  planned:
+    "com.apple.security.audio":
+      timeline: "Phase 3"
+      purpose: "Background playback"
+    "com.apple.security.network.client":
+      timeline: "Never"
+      purpose: "Explicitly excluded"
+
+# Build Configuration
+build_configuration:
+  deployment_target: "17.0"
+  swift_version: "5.9"
+  architectures: ["arm64"]  # Apple Silicon only
+  optimization_level: "O2"
+  code_signing: "automatic"
+  
+# Performance Targets
+performance_requirements:
+  app_launch: "< 1 second"
+  import_speed: "> 10 songs/second"
+  memory_usage: "< 150 MB idle"
+  grid_scrolling: "60 fps"
+  audio_latency: "< 10ms"
+
+# Future Framework Integrations
+future_integrations:
+  AVPlayer:
+    priority: "HIGH"
+    timeline: "Phase 3 - Q2 2025"
+    purpose: "Gapless playback, background audio"
+    complexity: "Medium"
+    blockers: []
+    benefits:
+      - "True gapless playback"
+      - "Background audio support"
+      - "Better scrubbing control"
+      - "Queue management"
+      
+  vDSP:
+    priority: "MEDIUM"
+    timeline: "Phase 3 - Q3 2025"
+    purpose: "Hardware accelerated DSP"
+    complexity: "High"
+    blockers: ["Need equalizer UI design"]
+    benefits:
+      - "Real-time EQ"
+      - "Spectrum analysis"
+      - "Audio effects"
+      
+  CloudKit:
+    priority: "NEVER"
+    timeline: "Excluded by design"
+    reason: "Offline-first philosophy"
+    
+  MusicKit:
+    priority: "NEVER"
+    timeline: "Excluded by design"
+    reason: "No Apple Music integration"
+
+# Strict Architecture Exclusions
+strict_exclusions:
+  - "No network libraries (Alamofire, URLSession for API)"
+  - "No streaming frameworks (HLS, DASH)"
+  - "No analytics SDKs (Firebase, Amplitude)"
+  - "No cloud storage (CloudKit, iCloud Drive for sync)"
+  - "No third-party audio libraries (FMOD, BASS)"
+  - "No subscription frameworks (StoreKit 2, RevenueCat)"
+  - "No online metadata services (MusicBrainz, Discogs)"
+  - "No social features (sharing, collaboration)"
+
+# Integration Health Checks
+health_metrics:
+  framework_conflicts: 0
+  deprecated_apis: 0
+  minimum_deployment_met: true
+  exclusive_features_used:
+    - "SwiftData (iOS 17+)"
+    - "Observable (iOS 17+)"
+    - "Materials (iOS 15+)"
